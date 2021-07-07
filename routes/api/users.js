@@ -6,7 +6,6 @@ const AppError = require('../../AppError');
 router.get(
   '/',
   wrapAsync(async (req, res) => {
-    throw new AppError(400, 'hello world');
     res.send('hello world');
   })
 );

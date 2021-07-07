@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const morgan = require('morgan');
 const app = express();
 const mongoose = require('mongoose');
 
@@ -9,6 +10,8 @@ const port = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/test';
 
 app.use(express.json());
+
+app.use(morgan('tiny'));
 
 mongoose
   .connect(MONGODB_URI, {
@@ -23,7 +26,7 @@ mongoose
     console.log(err);
   });
 
-app.use('/api/test', require('./routes/api/test'));
+app.use('/api/users', require('./routes/api/users'));
 
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
